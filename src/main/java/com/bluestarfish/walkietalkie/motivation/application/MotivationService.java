@@ -8,7 +8,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class MotivationService extends ListenerAdapter {
     @Value("${discord.bot.channel-test}")
     private String channelId;
