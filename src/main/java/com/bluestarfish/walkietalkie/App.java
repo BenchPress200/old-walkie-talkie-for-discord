@@ -2,9 +2,9 @@ package com.bluestarfish.walkietalkie;
 
 import com.bluestarfish.walkietalkie.manager.JDAEventManager;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class App {
     private final JDAEventManager jdaEventManager;

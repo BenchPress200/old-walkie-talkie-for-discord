@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@RequiredArgsConstructor
 @EnableScheduling
+@RequiredArgsConstructor
 public class WalkieTalkieApplication implements CommandLineRunner {
     private final App app;
 
