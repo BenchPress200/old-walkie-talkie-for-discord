@@ -2,9 +2,9 @@ name: 디스코드 봇 배포
 
 on:
   # 메인브랜치로 pr 날리면 깃헙액션 실행
-  pull_request:
-    branches:
-      - "main"
+  #  pull_request:
+  #    branches:
+  #      - "main"
 
   # 깃허브 웹을 통해서 깃헙액션 수동실행 설정
   workflow_dispatch:
