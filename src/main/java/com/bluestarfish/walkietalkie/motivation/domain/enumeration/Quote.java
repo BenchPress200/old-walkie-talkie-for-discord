@@ -9,7 +9,6 @@ public enum Quote {
     QUOTE_3("## 늦었다고 생각할 때가 늦었다  :tired_face:"),
     QUOTE_4("## 어려운 길은 길이 아니다  :face_vomiting:"),
     QUOTE_5("## 즐길 수 없으면 피하라  :neutral_face:"),
-    QUOTE_6("## 내일도 할 수 있는 일을 굳이 오늘 할 필요 없다  :upside_down:"),
     QUOTE_7("## 고생 끝에 골병 난다  :ghost:"),
     QUOTE_8("## 티끌 모아 티끌  :spider_web:");
 
