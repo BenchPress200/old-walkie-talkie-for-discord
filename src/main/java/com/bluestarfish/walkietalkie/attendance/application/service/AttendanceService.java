@@ -33,25 +33,28 @@ public class AttendanceService extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         String str = event.getMessage().getContentDisplay().trim();
         Member member = event.getMember();
+        String receivedChannelId = event.getChannel().getId();
 
-        switch (str) {
-            case "출첵" :
-            case "출석체크" :
-            case "출쳌" :
-            case "출석쳌" :
-            case "출석첵" :
-            case "출석" :
-            case "ㅊㅊ" :
-            case "출근" :
-            case "출근체크" :
-            case "출근첵" :
-            case "출근쳌" :
-                event.getChannel().sendMessage("🚀 **" + member.getEffectiveName() + "** 님 🚀").queue();
-                event.getChannel().sendMessage(checkIn(member)).queue();
-                break;
+        if(receivedChannelId.equals(channelId)) {
+            switch (str) {
+                case "출첵":
+                case "출석체크":
+                case "출쳌":
+                case "출석쳌":
+                case "출석첵":
+                case "출석":
+                case "ㅊㅊ":
+                case "출근":
+                case "출근체크":
+                case "출근첵":
+                case "출근쳌":
+                    event.getChannel().sendMessage("🚀 **" + member.getEffectiveName() + "** 님 🚀").queue();
+                    event.getChannel().sendMessage(checkIn(member)).queue();
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
     }
 
