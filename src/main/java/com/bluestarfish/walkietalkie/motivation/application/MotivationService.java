@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class MotivationService extends ListenerAdapter {
     @Value("${discord.bot.channel-quote}")
     private String channelId;
