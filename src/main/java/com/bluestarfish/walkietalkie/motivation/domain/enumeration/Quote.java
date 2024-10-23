@@ -11,8 +11,7 @@ public enum Quote {
     QUOTE_5("## 즐길 수 없으면 피하라  :neutral_face:"),
     QUOTE_6("## 내일도 할 수 있는 일을 굳이 오늘 할 필요 없다  :upside_down:"),
     QUOTE_7("## 고생 끝에 골병 난다  :ghost:"),
-    QUOTE_8("## 티끌 모아 티끌  :spider_web:"),
-    QUOTE_9("## 원수는 회사에서 만난다  :hammer:");
+    QUOTE_8("## 티끌 모아 티끌  :spider_web:");
 
     private final String quote;
 
