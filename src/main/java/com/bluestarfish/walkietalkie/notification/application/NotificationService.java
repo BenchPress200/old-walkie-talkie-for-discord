@@ -37,13 +37,12 @@ public class NotificationService extends ListenerAdapter {
         }
     }
 
-    @Scheduled(cron = "0 5 4 * * *", zone = TIMEZONE)
+    @Scheduled(cron = "0 59 23 * * *", zone = TIMEZONE)
     public void sendStudyRecordNotification() {
         TextChannel textChannel = jda.getTextChannelById(channelId);
-        log.info("채널 ID {}", channelId);
-        log.info("공부시간 기록 알림 메시지 전송 실행");
+        
         if (textChannel != null) {
-            textChannel.sendMessage(STUDY_TIME_RECORD_MESSAGE + " 테슽흐").queue();
+            textChannel.sendMessage(STUDY_TIME_RECORD_MESSAGE).queue();
             textChannel.sendMessage(sheetsUrl).queue();
             log.info("공부시간 기록 알림 메시지 전송");
         }
