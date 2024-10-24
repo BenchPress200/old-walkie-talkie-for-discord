@@ -2,10 +2,13 @@ package com.bluestarfish.walkietalkie.manager;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.events.StatusChangeEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class JDAEventManager {
@@ -16,6 +19,12 @@ public class JDAEventManager {
         for (ListenerAdapter adapter : adapters) {
             jda.addEventListener(adapter);
         }
+        jda.addEventListener(new ListenerAdapter() {
+            @Override
+            public void onStatusChange(StatusChangeEvent event) {
+                log.info("JDA 상태 변경: {}", event.getNewStatus());
+            }
+        });
     }
 }
 
