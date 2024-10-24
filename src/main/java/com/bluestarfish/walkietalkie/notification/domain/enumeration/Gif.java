@@ -1,4 +1,4 @@
-package com.bluestarfish.walkietalkie.motivation.domain.enumeration;
+package com.bluestarfish.walkietalkie.notification.domain.enumeration;
 
 import java.util.concurrent.ThreadLocalRandom;
 
