@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class NotificationService extends ListenerAdapter {
+    private static final String TIMEZONE = "Asia/Seoul";
+    private static final String STUDY_TIME_RECORD_MESSAGE = "## ✏️ 개발시간 기록 ㄱㄱ";
+
     @Value("${discord.bot.channel-quote}")
     private String channelId;
 
@@ -23,7 +26,7 @@ public class NotificationService extends ListenerAdapter {
         textChannel = event.getJDA().getTextChannelById(channelId);
     }
 
-    @Scheduled(cron = "0 0 9 * * *", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 0 9 * * *", zone = TIMEZONE)
     public void sendDailyQuote() {
         if (textChannel != null) {
             textChannel.sendMessage(Gif.getRandomGif().getUrl()).queue();
@@ -31,10 +34,10 @@ public class NotificationService extends ListenerAdapter {
         }
     }
 
-    @Scheduled(cron = "0 59 23 * * *", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 59 23 * * *", zone = TIMEZONE)
     public void sendStudyRecordNotification() {
         if (textChannel != null) {
-            textChannel.sendMessage("## ✏️ 개발시간 기록 ㄱㄱ").queue();
+            textChannel.sendMessage(STUDY_TIME_RECORD_MESSAGE).queue();
             textChannel.sendMessage(sheetsUrl).queue();
         }
     }
