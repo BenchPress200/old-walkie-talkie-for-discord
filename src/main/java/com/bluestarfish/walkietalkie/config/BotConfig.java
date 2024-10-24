@@ -13,12 +13,14 @@ public class BotConfig {
     private String botToken;
 
     @Bean
-    public JDA jda() {
-        return JDABuilder.createDefault(botToken)
+    public JDA jda() throws InterruptedException {
+        JDA jda = JDABuilder.createDefault(botToken)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
+
+        return jda;
     }
-    
+
 }
 
 

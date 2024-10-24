@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class App {
     private final JDAEventManager jdaEventManager;
 
-    public void start() {
+    public void start() throws InterruptedException {
         jdaEventManager.addEvents();
     }
 

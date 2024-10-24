@@ -14,11 +14,12 @@ public class JDAEventManager {
     private final JDA jda;
     private final List<ListenerAdapter> adapters;
 
-    public void addEvents() {
+    public void addEvents() throws InterruptedException {
         for (ListenerAdapter adapter : adapters) {
-            log.info("리스너 추가 {}", adapter.toString());
             jda.addEventListener(adapter);
         }
+        
+        jda.awaitReady();
     }
 }
 
