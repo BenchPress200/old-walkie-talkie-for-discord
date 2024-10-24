@@ -2,6 +2,7 @@ package com.bluestarfish.walkietalkie.notification.application;
 
 import com.bluestarfish.walkietalkie.notification.domain.enumeration.Gif;
 import com.bluestarfish.walkietalkie.notification.domain.enumeration.Quote;
+import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class NotificationService extends ListenerAdapter {
     private static final String TIMEZONE = "Asia/Seoul";
@@ -31,14 +33,16 @@ public class NotificationService extends ListenerAdapter {
         if (textChannel != null) {
             textChannel.sendMessage(Gif.getRandomGif().getUrl()).queue();
             textChannel.sendMessage(Quote.getRandomQuote().getQuote()).queue();
+            log.info("일간 메시지 전송");
         }
     }
 
-    @Scheduled(cron = "0 59 23 * * *", zone = TIMEZONE)
+    @Scheduled(cron = "0 45 1 * * *", zone = TIMEZONE)
     public void sendStudyRecordNotification() {
         if (textChannel != null) {
-            textChannel.sendMessage(STUDY_TIME_RECORD_MESSAGE).queue();
+            textChannel.sendMessage(STUDY_TIME_RECORD_MESSAGE + " 테슽흐").queue();
             textChannel.sendMessage(sheetsUrl).queue();
+            log.info("공부시간 기록 알림 메시지 전송");
         }
     }
 }
