@@ -48,7 +48,6 @@ public class AttendanceService extends ListenerAdapter {
                 case "출근체크":
                 case "출근첵":
                 case "출근쳌":
-                    event.getChannel().sendMessage("🚀 **" + member.getEffectiveName() + "** 님 🚀").queue();
                     event.getChannel().sendMessage(checkIn(member)).queue();
                     break;
 
@@ -61,14 +60,16 @@ public class AttendanceService extends ListenerAdapter {
     private String checkIn(Member member) {
         LocalDate today = LocalDate.now();
         Optional<Attendance> existingAttendance = attendanceRepository.findByUserIdAndCheckInDate(member.getId(), today);
+        StringBuilder br = new StringBuilder("🚀 치직... **" + member.getEffectiveName() + "** 님");
 
         if(existingAttendance.isPresent()) {
-            return "이미 오늘 출근을 완료했습니다.";
+            br.append("은 이미 오늘 출근을 완료했습니다. 치직... 🚀");
         } else {
             Attendance attendance = new Attendance(member.getId(), today);
             attendanceRepository.save(attendance);
-            return "🚀 출근 완료! 공부 시작! 🚀";
+            br.append(" 출근 완료입니다. 공부 시작 하세요. 오바. 치지직... 🚀");
         }
+        return br.toString();
     }
 
     @Scheduled(cron = "0 0 8 * * MON", zone = "Asia/Seoul")
