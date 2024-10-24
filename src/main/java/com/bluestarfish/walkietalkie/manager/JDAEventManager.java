@@ -4,7 +4,6 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.events.StatusChangeEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.springframework.stereotype.Component;
 
@@ -16,15 +15,10 @@ public class JDAEventManager {
     private final List<ListenerAdapter> adapters;
 
     public void addEvents() {
+        log.info("이벤트 리스터 추가 시작");
         for (ListenerAdapter adapter : adapters) {
             jda.addEventListener(adapter);
         }
-        jda.addEventListener(new ListenerAdapter() {
-            @Override
-            public void onStatusChange(StatusChangeEvent event) {
-                log.info("JDA 상태 변경: {}", event.getNewStatus());
-            }
-        });
     }
 }
 
