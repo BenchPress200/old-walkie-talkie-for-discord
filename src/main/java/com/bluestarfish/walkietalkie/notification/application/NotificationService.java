@@ -37,7 +37,7 @@ public class NotificationService extends ListenerAdapter {
         }
     }
 
-    @Scheduled(cron = "0 0s 4 * * *", zone = TIMEZONE)
+    @Scheduled(cron = "0 0 4 * * *", zone = TIMEZONE)
     public void sendStudyRecordNotification() {
         TextChannel textChannel = jda.getTextChannelById(channelId);
         log.info("채널 ID {}", channelId);
