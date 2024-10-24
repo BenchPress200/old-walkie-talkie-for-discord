@@ -25,6 +25,7 @@ public class NotificationService extends ListenerAdapter {
 
     @Override
     public void onReady(ReadyEvent event) {
+        log.info("봇 {} 채널 메시지 전송준비 완료", channelId);
         textChannel = event.getJDA().getTextChannelById(channelId);
     }
 
@@ -37,8 +38,9 @@ public class NotificationService extends ListenerAdapter {
         }
     }
 
-    @Scheduled(cron = "0 45 1 * * *", zone = TIMEZONE)
+    @Scheduled(cron = "0 5 2 * * *", zone = TIMEZONE)
     public void sendStudyRecordNotification() {
+        log.info("공부시간 기록 알림 메시지 전송 실행");
         if (textChannel != null) {
             textChannel.sendMessage(STUDY_TIME_RECORD_MESSAGE + " 테슽흐").queue();
             textChannel.sendMessage(sheetsUrl).queue();
