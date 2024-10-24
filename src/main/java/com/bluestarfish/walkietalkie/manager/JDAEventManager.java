@@ -18,8 +18,6 @@ public class JDAEventManager {
         for (ListenerAdapter adapter : adapters) {
             jda.addEventListener(adapter);
         }
-        
-        jda.awaitReady();
     }
 }
 

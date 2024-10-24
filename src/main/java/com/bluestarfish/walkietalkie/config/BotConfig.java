@@ -17,10 +17,9 @@ public class BotConfig {
         JDA jda = JDABuilder.createDefault(botToken)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
-
+        
         return jda;
     }
-
 }
 
 
