@@ -25,7 +25,6 @@ public class NotificationService extends ListenerAdapter {
 
     @Value("${sheets.url}")
     private String sheetsUrl;
-    private TextChannel textChannel;
 
     @Scheduled(cron = "0 0 9 * * *", zone = TIMEZONE)
     public void sendDailyQuote() {
@@ -40,7 +39,7 @@ public class NotificationService extends ListenerAdapter {
     @Scheduled(cron = "0 59 23 * * *", zone = TIMEZONE)
     public void sendStudyRecordNotification() {
         TextChannel textChannel = jda.getTextChannelById(channelId);
-        
+
         if (textChannel != null) {
             textChannel.sendMessage(STUDY_TIME_RECORD_MESSAGE).queue();
             textChannel.sendMessage(sheetsUrl).queue();
