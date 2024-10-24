@@ -15,8 +15,8 @@ public class JDAEventManager {
     private final List<ListenerAdapter> adapters;
 
     public void addEvents() {
-        log.info("이벤트 리스터 추가 시작");
         for (ListenerAdapter adapter : adapters) {
+            log.info("리스너 추가 {}", adapter.toString());
             jda.addEventListener(adapter);
         }
     }
