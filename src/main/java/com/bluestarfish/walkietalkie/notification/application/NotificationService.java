@@ -38,7 +38,7 @@ public class NotificationService extends ListenerAdapter {
         }
     }
 
-    @Scheduled(cron = "0 55 3 * * *", zone = TIMEZONE)
+    @Scheduled(cron = "0 0 3 * * *", zone = TIMEZONE)
     public void sendStudyRecordNotification() {
         log.info("채널 ID {}", channelId);
         log.info("공부시간 기록 알림 메시지 전송 실행");
