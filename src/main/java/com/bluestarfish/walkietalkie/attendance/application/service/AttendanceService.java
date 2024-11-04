@@ -35,7 +35,7 @@ public class AttendanceService extends ListenerAdapter {
         Member member = event.getMember();
         String receivedChannelId = event.getChannel().getId();
 
-        if(receivedChannelId.equals(channelId)) {
+        if (receivedChannelId.equals(channelId)) {
             switch (str) {
                 case "출첵":
                 case "출석체크":
@@ -48,6 +48,8 @@ public class AttendanceService extends ListenerAdapter {
                 case "출근체크":
                 case "출근첵":
                 case "출근쳌":
+                case "출근띠":
+                case "출근띠예":
                     event.getChannel().sendMessage(checkIn(member)).queue();
                     break;
 
@@ -59,10 +61,11 @@ public class AttendanceService extends ListenerAdapter {
 
     private String checkIn(Member member) {
         LocalDate today = LocalDate.now();
-        Optional<Attendance> existingAttendance = attendanceRepository.findByUserIdAndCheckInDate(member.getId(), today);
+        Optional<Attendance> existingAttendance = attendanceRepository.findByUserIdAndCheckInDate(member.getId(),
+                today);
         StringBuilder br = new StringBuilder("🚀 치직... **" + member.getEffectiveName() + "** 님");
 
-        if(existingAttendance.isPresent()) {
+        if (existingAttendance.isPresent()) {
             br.append("은 이미 오늘 출근을 완료했습니다. 치직... 🚀");
         } else {
             Attendance attendance = new Attendance(member.getId(), today);
@@ -90,12 +93,12 @@ public class AttendanceService extends ListenerAdapter {
         rankings.forEach(user -> user.setNickname(guild.getMemberById(user.getUserId()).getEffectiveName()));
         StringBuilder message = new StringBuilder("📊 **이번 주 출근 랭킹 상위 유저들입니다!** 📊\n\n");
 
-        if(rankings.isEmpty()) {
+        if (rankings.isEmpty()) {
             message.append("아무도 없네요...? 다들 공부 합시다! \n");
         } else {
-            if(!topUsersWithSevenDays.isEmpty()) {
+            if (!topUsersWithSevenDays.isEmpty()) {
                 message.append("🚀 일주일 내내 출근하신 분들입니다! 축하해주세요! 🚀\n");
-                for(int i=0; i<topUsersWithSevenDays.size(); i++) {
+                for (int i = 0; i < topUsersWithSevenDays.size(); i++) {
                     UserRanking ranking = rankings.get(i);
                     message.append("**")
                             .append(ranking.getNickname())
@@ -107,7 +110,7 @@ public class AttendanceService extends ListenerAdapter {
             }
 
             message.append("🚀 꾸준하게 출근한 상위 10명입니다! 축하합니다!! 🚀\n");
-            for(int i=topUsersWithSevenDays.size(); i<rankings.size(); i++) {
+            for (int i = topUsersWithSevenDays.size(); i < rankings.size(); i++) {
                 UserRanking ranking = rankings.get(i);
                 message.append((i + 1))
                         .append(". **")
