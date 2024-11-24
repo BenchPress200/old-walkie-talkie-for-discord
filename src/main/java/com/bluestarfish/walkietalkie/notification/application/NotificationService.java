@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class NotificationService extends ListenerAdapter {
     private static final String TIMEZONE = "Asia/Seoul";
     private static final String STUDY_TIME_RECORD_MESSAGE = "## ✏️ 개발시간 기록 ㄱㄱ";
-    private static final String WORKOUT_TIME_MESSAGE = "## 🧪 테스트 - 🏋🏻 오늘 운동 올려라 !";
+    private static final String WORKOUT_TIME_MESSAGE = "## 🏋🏻 오늘 운동 올려라 !";
 
     private final JDA jda;
 
@@ -55,7 +55,7 @@ public class NotificationService extends ListenerAdapter {
         }
     }
 
-    @Scheduled(cron = "0 10 23 * * *", zone = TIMEZONE)
+    @Scheduled(cron = "0 0 0 * * *", zone = TIMEZONE)
     public void sendWorkoutNotification() {
         TextChannel textChannel = jda.getTextChannelById(workoutChannelId);
 
